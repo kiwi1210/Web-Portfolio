@@ -1,5 +1,6 @@
 import "./style.css";
 import { initHeroScene } from "./hero-scene.js";
+import "./featured-project.js";
 
 // Entry point. Kept intentionally minimal at this stage —
 // project cards and page content get added in later steps.
