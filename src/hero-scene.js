@@ -11,36 +11,49 @@ import {
   Object3D,
   AmbientLight,
   DirectionalLight,
+  PointLight,
   DoubleSide,
   Fog,
   Box3,
   Vector3,
+  VideoTexture,
+  CanvasTexture,
+  MeshBasicMaterial,
+  SRGBColorSpace,
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-const COLOR_GROUND = 0x657254; // olive, campsite grass
-const COLOR_BLADE = 0x7c8a63; // slightly lighter olive, for subtle depth against the ground
-const COLOR_FOG = 0xe9ddbb; // warm haze — reads as dusk or early-morning light
+const COLOR_GROUND = 0x696c2a; // campsite grass
+const COLOR_BLADE = 0x696c2a;
+const COLOR_FOG = 0x26333a; // cool evening haze
 const COLOR_WOOD = 0x6b4a2f; // frame
-const COLOR_SCREEN = 0x2f2b26; // blank inset panel — the future slideshow spot
+const COLOR_SCREEN = 0xb6b2af; // blank inset panel — the future slideshow spot
+
+const SLIDESHOW_VIDEOS = [
+  { url: "/slidesshow/UTCIviz.mp4", caption: "3D Visualization" },
+  { url: "/slidesshow/Japanese.mp4", caption: "Printed Map" },
+  { url: "/slidesshow/SA.mp4", caption: "Interactive Maps" },
+];
+const SLIDE_DURATION = 6000;
+const PROJECTOR_SIDE_MATTE = 0.1;
 
 const BLADE_COUNT = 4500;
 const FIELD_WIDTH = 16; // x spread
 const FIELD_DEPTH = 14; // z spread
 
 // Frame dimensions (world units)
-const FRAME_WIDTH = 3.2;
-const FRAME_HEIGHT = 2.1;
-const FRAME_BAR = 0.16; // thickness of each wooden plank
-const FRAME_DEPTH = 0.12;
-const FRAME_Z = -3.4; // how far back into the field it stands
+const FRAME_WIDTH = 6.8;
+const FRAME_HEIGHT = 4.1;
+const FRAME_BAR = 0.008; // thickness of each wooden plank
+const FRAME_DEPTH = 0.22;
+const FRAME_Z = -3.7; // how far back into the field it stands
 
 // A simple tapered blade: a plane pinched narrower toward the tip and bent
 // slightly forward. Cheap — a handful of vertices, instanced thousands of
 // times on the GPU rather than thousands of separate meshes/draw calls.
 function createBladeGeometry() {
   const height = 0.22;
-  const geometry = new PlaneGeometry(0.05, height, 1, 4);
+  const geometry = new PlaneGeometry(0.05, height, 1, 3);
   const position = geometry.attributes.position;
 
   for (let i = 0; i < position.count; i++) {
@@ -98,9 +111,7 @@ function createGrassField() {
   return { mesh, geometry, material };
 }
 
-// A static wooden frame — four planks forming a rectangular border, standing
-// on the ground, with a dark blank panel inset just behind it. The panel is
-// the reserved spot for the slideshow later; for now it's just a flat color.
+// A static wooden frame with a projector screen inset behind it.
 function createFrame() {
   const woodMaterial = new MeshStandardMaterial({
     color: COLOR_WOOD,
@@ -129,23 +140,164 @@ function createFrame() {
     group.add(bar);
   }
 
-  // blank inset panel — where the slideshow will render later
+  // inset panel where the slideshow is rendered
   const screenWidth = FRAME_WIDTH - FRAME_BAR * 2;
   const screenHeight = FRAME_HEIGHT - FRAME_BAR * 2;
-  const screenGeometry = new PlaneGeometry(screenWidth, screenHeight);
+
+  const backingGeometry = new PlaneGeometry(screenWidth, screenHeight);
+  geometries.push(backingGeometry);
+  const backingMaterial = new MeshStandardMaterial({
+    color: 0x000000,
+    roughness: 1,
+  });
+  const backing = new Mesh(backingGeometry, backingMaterial);
+  backing.position.set(0, FRAME_HEIGHT / 2, -FRAME_DEPTH / 2);
+  group.add(backing);
+
+  const projectionWidth = screenWidth * (1 - PROJECTOR_SIDE_MATTE * 2);
+  const screenGeometry = new PlaneGeometry(projectionWidth, screenHeight);
   geometries.push(screenGeometry);
   const screenMaterial = new MeshStandardMaterial({
     color: COLOR_SCREEN,
     roughness: 1,
+    emissive: 0xffffff,
+    emissiveIntensity: 0,
   });
   const screen = new Mesh(screenGeometry, screenMaterial);
   screen.position.set(0, FRAME_HEIGHT / 2, -FRAME_DEPTH / 2 + 0.01);
   group.add(screen);
 
+  const captionCanvas = document.createElement("canvas");
+  captionCanvas.width = 1024;
+  captionCanvas.height = Math.round(
+    captionCanvas.width * (screenHeight / projectionWidth)
+  );
+  const captionContext = captionCanvas.getContext("2d");
+  const captionTexture = new CanvasTexture(captionCanvas);
+  captionTexture.colorSpace = SRGBColorSpace;
+
+  const captionMaterial = new MeshBasicMaterial({
+    map: captionTexture,
+    transparent: true,
+    depthWrite: false,
+    toneMapped: false,
+  });
+  const captionGeometry = new PlaneGeometry(projectionWidth, screenHeight);
+  geometries.push(captionGeometry);
+  const caption = new Mesh(captionGeometry, captionMaterial);
+  caption.position.set(0, FRAME_HEIGHT / 2, -FRAME_DEPTH / 2 + 0.02);
+  caption.renderOrder = 1;
+  group.add(caption);
+
+  function setCaption(text) {
+    captionContext.clearRect(0, 0, captionCanvas.width, captionCanvas.height);
+    captionContext.font = `600 ${Math.round(
+      captionCanvas.height * 0.045
+    )}px Roboto, sans-serif`;
+    captionContext.textAlign = "center";
+    captionContext.textBaseline = "middle";
+    captionContext.fillStyle = "#f2d45c"; //#f2d455c
+    captionContext.shadowColor = "rgba(0, 0, 0, 0)";
+    captionContext.shadowBlur = 1;
+    captionContext.shadowOffsetY = 5;
+    captionContext.strokeStyle = "#000000";
+    captionContext.lineWidth = 5;
+    captionContext.lineJoin = "round";
+    captionContext.strokeText(
+      text,
+      captionCanvas.width / 2,
+      captionCanvas.height * 0.9
+    );
+    captionContext.fillText(
+      text,
+      captionCanvas.width / 2,
+      captionCanvas.height * 0.9
+    );
+    captionTexture.needsUpdate = true;
+  }
+
+  const projectorLight = new PointLight(0xffd7b0, 0, 5.5, 2);
+  projectorLight.position.set(0, FRAME_HEIGHT / 2, 0.5);
+  group.add(projectorLight);
+
   group.position.set(0, 0, FRAME_Z);
 
-  return { group, geometries, materials: [woodMaterial, screenMaterial] };
+  return {
+    group,
+    geometries,
+    materials: [
+      woodMaterial,
+      backingMaterial,
+      screenMaterial,
+      captionMaterial,
+    ],
+    textures: [captionTexture],
+    screenMaterial,
+    projectorLight,
+    setCaption,
+  };
 }
+
+function createSlideshow(screenMaterial, projectorLight, setCaption) {
+  const video = document.createElement("video");
+  video.muted = true; // required for autoplay
+  video.playsInline = true;
+  video.preload = "auto";
+
+  const texture = new VideoTexture(video);
+  texture.colorSpace = SRGBColorSpace;
+
+  screenMaterial.color.set(0xffffff);
+  screenMaterial.map = texture;
+  screenMaterial.emissiveMap = texture;
+  screenMaterial.needsUpdate = true;
+
+  let index = 0;
+  let failures = 0;
+  let disposed = false;
+
+  function play(i) {
+    if (disposed || failures >= SLIDESHOW_VIDEOS.length) return;
+    index = i % SLIDESHOW_VIDEOS.length;
+    const slide = SLIDESHOW_VIDEOS[index];
+    video.src = slide.url;
+    setCaption(slide.caption);
+    video
+      .play()
+      .then(() => {
+        failures = 0;
+        screenMaterial.emissiveIntensity = 0.42;
+        projectorLight.intensity = 1.4;
+      })
+      .catch((error) => console.error("Slideshow play failed", error));
+  }
+
+  const onEnded = () => play(index + 1);
+  const onError = () => {
+    failures++;
+    console.error(`Failed to load ${SLIDESHOW_VIDEOS[index].url}`);
+    play(index + 1);
+  };
+  video.addEventListener("ended", onEnded);
+  video.addEventListener("error", onError);
+
+  play(0);
+
+  return {
+    update() {}, // VideoTexture refreshes itself each frame
+    dispose() {
+      disposed = true;
+      video.removeEventListener("ended", onEnded);
+      video.removeEventListener("error", onError);
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+      texture.dispose();
+    },
+  };
+}
+
+
 
 // Your two .glb characters. Put the files in /public/models/, reference
 // them here by root-relative path. targetHeight is in world units — the
@@ -164,8 +316,8 @@ const CHARACTER_CONFIGS = [
     url: "./public/model/3Dpotatoes.glb",
     x: 0.6,
     z: 2.0,
-    rotationY: 0.35,
-    targetHeight: 0.45,
+    rotationY: 1.85,
+    targetHeight: 0.75,
   },
 ];
 
@@ -245,13 +397,13 @@ export function initHeroScene(container) {
   scene.fog = new Fog(COLOR_FOG, 8, 20);
 
   const camera = new PerspectiveCamera(
-    50,
+    45,
     container.clientWidth / container.clientHeight,
     0.1,
     100
   );
   camera.position.set(0, 1.2, 6.5);
-  camera.lookAt(0, 0.9, -1.5);
+  camera.lookAt(0, 1.25, -1.5);
 
   const renderer = new WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -267,26 +419,37 @@ export function initHeroScene(container) {
   const frame = createFrame();
   scene.add(frame.group);
 
-  const characters = loadCharacters(scene, render);
+  const slideshow = createSlideshow(
+    frame.screenMaterial,
+    frame.projectorLight,
+    frame.setCaption
+  );
 
-  const ambient = new AmbientLight(0xffffff, 0.7);
+  const characters = loadCharacters(scene, () => {});
+
+  const ambient = new AmbientLight(0x71809a, 0.3);
   scene.add(ambient);
 
-  const directional = new DirectionalLight(0xfff2e0, 1.1);
+  const directional = new DirectionalLight(0xe79a72, 0.48);
   directional.position.set(3, 5, 4);
   scene.add(directional);
 
+  let animationFrame;
+
   function render() {
+    slideshow.update();
     renderer.render(scene, camera);
+    animationFrame = window.requestAnimationFrame(render);
   }
 
-  // Static for now — no wind sway or characters yet, those come in later
-  // steps. A single render is enough, but resize/visibility handling is
-  // already wired up so later steps (animation) can drop straight in.
   render();
 
   function handleVisibility() {
-    if (!document.hidden) render();
+    if (document.hidden) {
+      window.cancelAnimationFrame(animationFrame);
+    } else {
+      render();
+    }
   }
   document.addEventListener("visibilitychange", handleVisibility);
 
@@ -296,19 +459,21 @@ export function initHeroScene(container) {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
-    render();
   });
   resizeObserver.observe(container);
 
   return function destroy() {
     document.removeEventListener("visibilitychange", handleVisibility);
     resizeObserver.disconnect();
+    window.cancelAnimationFrame(animationFrame);
+    slideshow.dispose();
     ground.geometry.dispose();
     ground.material.dispose();
     grass.geometry.dispose();
     grass.material.dispose();
     frame.geometries.forEach((g) => g.dispose());
     frame.materials.forEach((m) => m.dispose());
+    frame.textures.forEach((texture) => texture.dispose());
     characters.cancel();
     characters.dispose();
     renderer.dispose();
