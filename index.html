@@ -4,12 +4,18 @@
     <meta charset="UTF-8" />
     <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton+SC&display=swap"
+      rel="stylesheet"
+    />
     <title>portfolio</title>
   </head>
   <body>
     <header class="site-header">
       <div class="site-header__inner">
-        <a class="logo" href="/">Your Name</a>
+        <a class="logo" href="/">YIRU</a>
 
         <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
           <span></span>
@@ -17,7 +23,7 @@
 
         <nav class="main-nav" id="main-nav">
           <a href="#projects">Projects</a>
-          <a href="#story">My Story</a>
+          <a href="/my-story.html">My Story</a>
           <a href="#skills">Skills</a>
           <a href="#recognition">Recognition</a>
         </nav>
@@ -27,9 +33,9 @@
     <main id="app">
       <section class="hero" id="hero">
         <div class="hero__text">
-          <p class="hero__eyebrow">Hi, I'm Yiru.</p>
-          <h1 class="hero__slogan">Connecting <em>people</em>, <em>data</em>, and <em>space</em> through visualization.</h1>
-          <p class="hero__desc">I explore relationships through spatial analysis and data visualization—turning information into clear, meaningful ways of understanding the world.</p>
+          <!-- <p class="hero__eyebrow">Hi, I'm Yiru.</p> -->
+          <h1 class="hero__slogan">Connecting PEOPLE, DATA, and SPACE through visualization.</h1>
+          <p class="hero__desc">I like turning raw data into visual stories that people can quickly understand, explore, and connect with.</p>
         </div>
         <div class="hero__scene" id="hero-scene">
           <!-- three.js canvas mounts here -->
@@ -37,7 +43,7 @@
       </section>
 
       <section class="featured" id="projects">
-        <h2 class="section-title">Featured Projects</h2>
+        <h2 class="section-title">FEATURED PROJECTS</h2>
         <div class="featured__grid">
           <project-card
             variant="full"
@@ -76,7 +82,7 @@
       </section>
 
       <section class="panels">
-        <a class="panel" href="#story">
+        <a class="panel" href="/my-story.html">
           <h3>My Story</h3>
         </a>
         <a class="panel" href="#skills">
