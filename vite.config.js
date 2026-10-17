@@ -2,6 +2,9 @@ import { defineConfig } from "vite";
 import { resolve } from "node:path";
 
 export default defineConfig({
+  // Keep generated asset URLs portable when the site is hosted below a subpath
+  // or opened directly from the generated `docs` directory.
+  base: "./",
   build: {
     outDir: "docs",
     rollupOptions: {

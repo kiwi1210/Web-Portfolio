@@ -30,9 +30,9 @@ const COLOR_WOOD = 0x6b4a2f; // frame
 const COLOR_SCREEN = 0xb6b2af; // blank inset panel — the future slideshow spot
 
 const SLIDESHOW_VIDEOS = [
-  { url: "/slidesshow/UTCIviz.mp4", caption: "3D Visualization" },
-  { url: "/slidesshow/Japanese.mp4", caption: "Printed Map" },
-  { url: "/slidesshow/SA.mp4", caption: "Interactive Maps" },
+  { url: "./slidesshow/UTCIviz.mp4", caption: "3D Visualization" },
+  { url: "./slidesshow/Japanese.mp4", caption: "Printed Map" },
+  { url: "./slidesshow/SA.mp4", caption: "Interactive Maps" },
 ];
 const SLIDE_DURATION = 6000;
 const PROJECTOR_SIDE_MATTE = 0.1;
@@ -306,14 +306,14 @@ function createSlideshow(screenMaterial, projectorLight, setCaption) {
 // scaled/exported from Blender.
 const CHARACTER_CONFIGS = [
   {
-    url: "/model/3Ddog.glb",
+    url: "./model/3Ddog.glb",
     x: -1.55,
     z: 2.2,
     rotationY: 2.3,
     targetHeight: 1,
   },
   {
-    url: "/model/3Dpotatoes.glb",
+    url: "./model/3Dpotatoes.glb",
     x: 0.6,
     z: 2.0,
     rotationY: 1.85,

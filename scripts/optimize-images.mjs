@@ -99,7 +99,7 @@ async function optimizeImage(sourcePath) {
 function referenceVariants(filePath) {
   const relativePath = path.relative(IMAGE_DIRECTORY, filePath).replaceAll(path.sep, "/");
   return [
-    `/img/${relativePath}`,
+    `./img/${relativePath}`,
     `/img/${relativePath}`,
     `public/img/${relativePath}`,
   ];

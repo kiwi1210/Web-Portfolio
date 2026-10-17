@@ -40,11 +40,11 @@ const STORY_VIEWS = {
 };
 
 const TAIPEI_STOPS = [
-  { position: [24.9874, 121.576], icon: "/icon/college.svg", label: "University" },
-  { position: [25.04, 121.6137], icon: "/icon/suitcase.svg", label: "Work Experience" },
-  { position: [24.9837, 121.5414], icon: "/icon/suitcase.svg", label: "Work Experience" },
-  { position: [24.9874, 121.576], icon: "/icon/library.svg", label: "Research Experience" },
-  { position: [25.0084, 121.4805], icon: "/icon/suitcase.svg", label: "Work Experience" },
+  { position: [24.9874, 121.576], icon: "./icon/college.svg", label: "University" },
+  { position: [25.04, 121.6137], icon: "./icon/suitcase.svg", label: "Work Experience" },
+  { position: [24.9837, 121.5414], icon: "./icon/suitcase.svg", label: "Work Experience" },
+  { position: [24.9874, 121.576], icon: "./icon/library.svg", label: "Research Experience" },
+  { position: [25.0084, 121.4805], icon: "./icon/suitcase.svg", label: "Work Experience" },
 ];
 
 const EUROPE_STOPS = [
@@ -168,7 +168,7 @@ if (mapContainer) {
         className: "story-europe-marker-icon",
         html:
           '<span class="story-europe-marker">' +
-          '<img src="/icon/college.svg" alt="" aria-hidden="true" />' +
+          '<img src="./icon/college.svg" alt="" aria-hidden="true" />' +
           "</span>",
         iconSize: [31, 31],
         iconAnchor: [21, 21],
@@ -266,7 +266,7 @@ if (mapContainer) {
       className: "story-europe-marker-icon",
       html:
         '<span class="story-europe-marker">' +
-        '<img src="/icon/suitcase.svg" alt="" aria-hidden="true" />' +
+        '<img src="./icon/suitcase.svg" alt="" aria-hidden="true" />' +
         "</span>",
       iconSize: [42, 42],
       iconAnchor: [21, 21],
@@ -299,7 +299,7 @@ if (mapContainer) {
     }
   }
 
-  fetch("/spatial/Taipei_wgs84.geojson")
+  fetch("./spatial/Taipei_wgs84.geojson")
     .then((response) => {
       if (!response.ok) throw new Error(`GeoJSON request failed: ${response.status}`);
       return response.json();
