@@ -393,12 +393,15 @@ function loadCharacters(scene, onModelReady) {
 export function initHeroScene(container) {
   if (!container) return;
 
+  const initialWidth = container.clientWidth;
+  const initialHeight = container.clientHeight;
+
   const scene = new Scene();
   scene.fog = new Fog(COLOR_FOG, 8, 20);
 
   const camera = new PerspectiveCamera(
     45,
-    container.clientWidth / container.clientHeight,
+    initialWidth / initialHeight,
     0.1,
     100
   );
@@ -407,7 +410,8 @@ export function initHeroScene(container) {
 
   const renderer = new WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setSize(initialWidth, initialHeight, false);
+  renderer.domElement.classList.add("hero__canvas");
   container.appendChild(renderer.domElement);
 
   const ground = createGround();
@@ -453,18 +457,41 @@ export function initHeroScene(container) {
   }
   document.addEventListener("visibilitychange", handleVisibility);
 
-  const resizeObserver = new ResizeObserver((entries) => {
-    const { width, height } = entries[0].contentRect;
+  let resizeFrame;
+  let renderedWidth = initialWidth;
+  let renderedHeight = initialHeight;
+
+  function syncSize() {
+    resizeFrame = undefined;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
     if (width === 0 || height === 0) return;
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    if (width === renderedWidth && height === renderedHeight) return;
+
+    renderedWidth = width;
+    renderedHeight = height;
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-  });
+    renderer.setSize(width, height, false);
+  }
+
+  function scheduleResize() {
+    if (resizeFrame) return;
+    resizeFrame = window.requestAnimationFrame(syncSize);
+  }
+
+  const resizeObserver = new ResizeObserver(scheduleResize);
   resizeObserver.observe(container);
+  window.addEventListener("resize", scheduleResize, { passive: true });
 
   return function destroy() {
     document.removeEventListener("visibilitychange", handleVisibility);
+    window.removeEventListener("resize", scheduleResize);
     resizeObserver.disconnect();
+    if (resizeFrame) window.cancelAnimationFrame(resizeFrame);
     window.cancelAnimationFrame(animationFrame);
     slideshow.dispose();
     ground.geometry.dispose();

@@ -69,8 +69,6 @@ if (mapContainer) {
     attributionControl: true,
   });
 
-  L.control.zoom({ position: "topright" }).addTo(map);
-
   L.tileLayer(tileUrl, {
     maxZoom: 20,
     attribution,
