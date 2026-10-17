@@ -620,7 +620,7 @@ color: var(--color-highlight);
 .contact-page iframe {
   display: block;
   width: min(100%, 40rem);
-  height: 65rem;
+  /* height: 65rem; */
   border: 0;
 }
 

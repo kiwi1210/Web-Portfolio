@@ -306,14 +306,14 @@ function createSlideshow(screenMaterial, projectorLight, setCaption) {
 // scaled/exported from Blender.
 const CHARACTER_CONFIGS = [
   {
-    url: "./public/model/3Ddog.glb",
+    url: "/model/3Ddog.glb",
     x: -1.55,
     z: 2.2,
     rotationY: 2.3,
     targetHeight: 1,
   },
   {
-    url: "./public/model/3Dpotatoes.glb",
+    url: "/model/3Dpotatoes.glb",
     x: 0.6,
     z: 2.0,
     rotationY: 1.85,
