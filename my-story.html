@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Anton+SC&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" /> -->
     <title>My Story — Yiru</title>
   </head>
   <body class="story-page">
@@ -22,10 +22,10 @@
         </button>
 
         <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
-          <a href="/#projects">Projects</a>
+          <a href="/projects.html">Projects</a>
+          <a href="/what-i-offer.html">What I Offer?</a>
           <a href="/my-story.html" aria-current="page">My Story</a>
-          <a href="/#skills">Skills</a>
-          <a href="/#recognition">Recognition</a>
+          <a href="/contact.html">Contact</a>
         </nav>
       </div>
     </header>
@@ -70,19 +70,137 @@
               </section>
             </div>
           </article>
+
+          <div class="story-scroll-hint" aria-hidden="true">
+            <span>Scroll down to explore the journey that brought me here.</span>
+            <span class="story-scroll-hint__arrow"></span>
+          </div>
         </section>
 
-        <section class="story-step" data-map-view="taipei">
+        <section
+          class="story-step"
+          data-map-view="taipei"
+          data-taipei-stop="0"
+          data-map-label="University"
+        >
           <article class="story-card">
-            <h2>Where the story begins</h2>
+            <!-- <h2>Where the story begins</h2> -->
             <p>
-              Taipei is where curiosity first became direction—where observing the city
-              led to exploring how spatial information can tell meaningful human stories.
+              I was born and raised in <b>Taipei</b>, Taiwan, a vibrant city that shaped my curiosity about the world around me.</p>
+            
+            <p>At National Chengchi University (NCCU), I pursued a dual degree in <b>Statistics and Geomatics</b>,
+              building a foundation in data analysis and spatial science.
             </p>
+          </article>
+        </section>
+
+        <section
+          class="story-step"
+          data-map-view="taipei"
+          data-taipei-stop="1"
+          data-map-label="Work Experience"
+        >
+          <article class="story-card">
+            <p>In summer <b>2022</b>, I began my first internship as a <b>Spatial Analysis Intern</b> at Academia Sinica.</p>
+            <p>
+            I analyzed temperature changes and future land-use scenarios to explore the challenges and 
+            opportunities facing Taiwan’s agricultural land under two Shared Socioeconomic Pathways (SSPs).</p>
+          </article>
+        </section>
+
+        <section
+          class="story-step"
+          data-map-view="taipei"
+          data-taipei-stop="2"
+          data-map-label="Work Experience"
+        >
+          <article class="story-card">
+            <p>In summer <b>2023</b>, I joined the National Science and Technology Center for Disaster Reduction 
+            as a <b>Drone Mapping Intern</b>. </p>
+            
+            <p>Working with my team, I contributed to UAV mapping of landslide areas, 
+            from flight planning and ground control point setup to 3D modeling and landslide volume 
+            estimation using time-series orthophotos and digital surface models.</p>
+          </article>
+        </section>
+
+        <section
+          class="story-step"
+          data-map-view="taipei"
+          data-taipei-stop="3"
+          data-map-label="Research Experience"
+        >
+          <article class="story-card">
+            <p>Later in <b>2023</b>, I joined Professor Shih-Yuan Lin’s <b>research group</b> at NCCU, 
+            where I explored ESG-related research and remote sensing, collected and organized 
+            research materials, and processed Sentinel-2 imagery. </p>
+            <p>From fall <b>2023</b> to spring <b>2024</b>, 
+            I conducted an <b>independent study</b> on detecting spatiotemporal changes in ponds across Taoyuan, 
+            Taiwan, using satellite image time series, supported by an <b>undergraduate research fellowship</b>.</p> 
+            <p>During this period, I also served as a teaching assistant for Aerial Photogrammetry.</p>
+          </article>
+        </section>
+
+        <section
+          class="story-step"
+          data-map-view="taipei"
+          data-taipei-stop="4"
+          data-map-label="Work Experience"
+        >
+          <article class="story-card">
+            <p>In February <b>2024</b>, I graduated from NCCU with a <b>BSc in Statistics and a BA in Geomatics</b>.</p>
+            
+            <p>Before starting my master’s degree, I spent five months as a <b>Project Management Intern</b> at 
+            Strong Engineering Consulting. </p>
+            <p>I analyzed more than 100 gravel pits on public land 
+            using UAV imagery and 3D spatial data, developed technical training materials, 
+            and automated workflows using Google Apps Script, AppSheet, and Python.</p>
+          </article>
+        </section>
+
+        <section class="story-step" data-map-view="europe">
+          <article class="story-card">
+            <p>In fall <b>2024</b>, I began the <b>International Cartography MSc programme</b>, with lectures delivered by 
+            <b>Technical Universities of Munich, Vienna, and Dresden</b>, alongside 30 classmates from 23 other countries. </p>
+            <p>One of the highlights was living in a different city each semester,  
+            and experiencing new cultures and perspectives while deepening my understanding of spatial analysis and visual design in cartography.</p>
+          </article>
+        </section>
+
+        <section class="story-step" data-map-view="vienna-work">
+          <article class="story-card">
+            <p>In April <b>2026</b>, I returned to Vienna to complete my <b>Master’s thesis at VRVis GmbH</b>.</p> 
+            <p>I designed and developed an <b>interactive 3D prototype to visualize urban thermal stress</b> 
+            at the neighborhood scale, then <b>evaluated its usability</b> through exploratory tasks, questionnaires, 
+            and interviews. After successfully defending my thesis, I graduated with an MSc in Cartography.</p>
+          </article>
+        </section>
+
+        <section class="story-step" data-map-view="overview">
+          <article class="story-card">
+            <p>Currently, I work as a freelance cartographer and data visualizer 
+            while seeking full-time opportunities. I enjoy transforming complex spatial data into clear, 
+            engaging, and meaningful visual experiences.</p>
           </article>
         </section>
       </div>
     </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__links" aria-label="Contact links">
+        <a href="mailto:" aria-label="Send me an email">
+          <img src="/icon/email.png" alt="" />
+        </a>
+        <a
+          href="https://www.linkedin.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit my LinkedIn profile"
+        >
+          <img src="/icon/in.png" alt="" />
+        </a>
+      </div>
+    </footer>
 
     <script type="module" src="/src/story.js"></script>
   </body>

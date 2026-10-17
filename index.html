@@ -22,10 +22,10 @@
         </button>
 
         <nav class="main-nav" id="main-nav">
-          <a href="#projects">Projects</a>
+          <a href="/projects.html">Projects</a>
+          <a href="/what-i-offer.html">What I Offer?</a>
           <a href="/my-story.html">My Story</a>
-          <a href="#skills">Skills</a>
-          <a href="#recognition">Recognition</a>
+          <a href="/contact.html">Contact</a>
         </nav>
       </div>
     </header>
@@ -79,20 +79,45 @@
           >
           </project-card>
         </div>
+        <a class="panel__link" href="/projects.html">Find out more projects</a>
       </section>
 
-      <section class="panels">
-        <a class="panel" href="/my-story.html">
-          <h3>My Story</h3>
-        </a>
-        <a class="panel" href="#skills">
-          <h3>Skills</h3>
-        </a>
-        <a class="panel" href="#recognition">
-          <h3>Recognition</h3>
-        </a>
+      <section class="panels" aria-label="Explore more">
+        <article class="panel" id="skills">
+          <h3>What I Offer?</h3>
+          <p>Explore my skills, services, and areas of expertise.</p>
+          <a class="panel__link" href="/what-i-offer.html">Explore My Services</a>
+        </article>
+
+        <article class="panel">
+          <h3>About</h3>
+          <p>Discover the places, experiences, and ideas that shaped my journey.</p>
+          <a class="panel__link" href="/my-story.html">Read My Story</a>
+        </article>
+
+        <article class="panel" id="contact">
+          <h3>Have an Idea in Mind?</h3>
+          <p>I'd love to hear about it. Let's connect and explore how we could work together.</p>
+          <a class="panel__link" href="/contact.html">Let's talk</a>
+        </article>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__links" aria-label="Contact links">
+        <a href="mailto:" aria-label="Send me an email">
+          <img src="/icon/email.png" alt="" />
+        </a>
+        <a
+          href="https://www.linkedin.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit my LinkedIn profile"
+        >
+          <img src="/icon/in.png" alt="" />
+        </a>
+      </div>
+    </footer>
 
     <script type="module" src="/src/main.js"></script>
   </body>
