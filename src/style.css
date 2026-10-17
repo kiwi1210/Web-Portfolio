@@ -7,7 +7,7 @@
   --color-text: #262626; /* #2b2b26 */
   --color-text-muted: #5c5c52; /* #ecb390 */
 
-  --paper-texture: url("/img/paper_texture.png");
+  --paper-texture: url("/img/paper_texture.jpg");
 
   --header-height: 4.5rem;
   --content-max: 1400px;
