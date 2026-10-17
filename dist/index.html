@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton+SC&display=swap"
+      rel="stylesheet"
+    />
+    <title>portfolio</title>
+    <script type="module" crossorigin src="/assets/home-CTXST2hR.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-jk3q5yOL.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-CqvK5Bqv.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="logo" href="/">Yiru</a>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+        </button>
+
+        <nav class="main-nav" id="main-nav">
+          <a href="/projects.html">Projects</a>
+          <a href="/what-i-offer.html">What I Offer?</a>
+          <a href="/my-story.html">My Story</a>
+          <a href="/contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="app">
+      <section class="hero" id="hero">
+        <div class="hero__text">
+          <!-- <p class="hero__eyebrow">Hi, I'm Yiru.</p> -->
+          <h1 class="hero__slogan">Connecting PEOPLE, DATA, and SPACE through visualization.</h1>
+          <p class="hero__desc">I like turning raw data into visual stories that people can quickly understand, explore, and connect with.</p>
+        </div>
+        <div class="hero__scene" id="hero-scene">
+          <!-- three.js canvas mounts here -->
+        </div>
+      </section>
+
+      <section class="featured" id="projects">
+        <h2 class="section-title">FEATURED PROJECTS</h2>
+        <div class="featured__grid">
+          <project-card
+            variant="full"
+            img="/img/3Dviz.jpg"
+            title="3D Prototype for Visualizing Urban Thermal Stress"
+            href="#"
+          >
+            An interactive visualization tool built in Unity that maps urban thermal stress
+             across a residential neighborhood in Seestadt, Vienna.
+          </project-card>
+          <!-- remaining project cards go here -->
+          <project-card
+            variant="third"
+            image-y="37%"
+            img="/img/Japanese_Tales.jpg"
+            title="Where Stories Take Root - the Landscapes Behind Japanese Tales"
+            href="#"
+          >
+          </project-card>
+          <project-card
+            variant="third"
+            image-y="75%"
+            img="/img/2maps.jpg"
+            title="Similar Topics, Different Target Groups"
+            href="#"
+          >
+          </project-card>
+          <project-card
+            variant="third"
+            img="/img/SA.jpg"
+            title="Military Dictatorship in South America"
+            href="#"
+          >
+          </project-card>
+        </div>
+        <a class="panel__link" href="/projects.html">Find out more projects</a>
+      </section>
+
+      <section class="panels" aria-label="Explore more">
+        <article class="panel" id="skills">
+          <h3>What I Offer?</h3>
+          <p>Explore my skills, services, and areas of expertise.</p>
+          <a class="panel__link" href="/what-i-offer.html">Explore My Services</a>
+        </article>
+
+        <article class="panel">
+          <h3>About</h3>
+          <p>Discover the places, experiences, and ideas that shaped my journey.</p>
+          <a class="panel__link" href="/my-story.html">Read My Story</a>
+        </article>
+
+        <article class="panel" id="contact">
+          <h3>Have an Idea in Mind?</h3>
+          <p>I'd love to hear about it. Let's connect and explore how we could work together.</p>
+          <a class="panel__link" href="/contact.html">Let's talk</a>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__links" aria-label="Contact links">
+        <a href="mailto:yiru.k.liang@gmail.com" aria-label="Send me an email">
+          <img src="/icon/email.png" alt="" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/yi-ru-liang-66433619b/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit my LinkedIn profile"
+        >
+          <img src="/icon/in.png" alt="" />
+        </a>
+      </div>
+    </footer>
+
+  </body>
+</html>
