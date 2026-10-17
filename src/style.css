@@ -98,7 +98,8 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-text-muted);
-  transition: color 0.25s ease;
+  text-shadow: 0 0 transparent;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
   padding-bottom: 0.2rem;
 }
 
@@ -117,7 +118,7 @@ p {
 
 .main-nav a:hover {
   /* color: var(--color-sub-2); */
-  font-weight: 800;
+  text-shadow: 0.35px 0 currentColor, -0.35px 0 currentColor;
 }
 
 .main-nav a:hover::after {
