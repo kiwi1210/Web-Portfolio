@@ -5,7 +5,6 @@
 // Attributes:
 //   img       - image src
 //   title     - project title
-//   href      - link target (defaults to "#")
 //   variant   - "full" for one full-width project or "third" for three per row
 //   image-x   - horizontal image position inside its frame (default: "50%")
 //   image-y   - vertical image position inside its frame (default: "50%")
@@ -20,7 +19,6 @@ class ProjectCard extends HTMLElement {
     // read + clear before we touch innerHTML, textContent is our data source
     const img = this.getAttribute("img") || "";
     const title = this.getAttribute("title") || "";
-    const href = this.getAttribute("href") || "#";
     const variant = this.getAttribute("variant") === "full" ? "full" : "third";
     const imageX = this.getAttribute("image-x") || "50%";
     const imageY = this.getAttribute("image-y") || "50%";
@@ -31,15 +29,15 @@ class ProjectCard extends HTMLElement {
     this.style.setProperty("--project-image-y", imageY);
 
     this.innerHTML = `
-      <a class="project-card__link" href="${href}">
-        <div class="project-card__media">
+      <div class="project-card__link">
+        <button class="project-card__media" type="button" aria-label="View ${title} larger">
           <img src="${img}" alt="${title}" loading="lazy" />
-        </div>
+        </button>
         <div class="project-card__body">
           <h3 class="project-card__title">${title}</h3>
           <p class="project-card__desc">${description}</p>
         </div>
-      </a>
+      </div>
     `;
   }
 }

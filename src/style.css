@@ -335,7 +335,12 @@ color: var(--color-highlight);
 
 .project-card__media {
   overflow: hidden;
+  width: 100%;
+  padding: 0;
+  border: 0;
   border-radius: 1.25rem;
+  background: none;
+  cursor: zoom-in;
 }
 
 .project-card__media img {
@@ -347,6 +352,11 @@ color: var(--color-highlight);
   object-position:
     var(--project-image-x, 50%)
     var(--project-image-y, 50%);
+}
+
+.project-card__media:focus-visible {
+  outline: 3px solid var(--color-highlight);
+  outline-offset: 0.3rem;
 }
 
 .project-card__body {
