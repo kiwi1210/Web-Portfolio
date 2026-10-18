@@ -21,15 +21,6 @@ const editorialGrid = document.querySelector(".editorial-grid");
 if (editorialGrid) {
   const projects = [...editorialGrid.querySelectorAll(".editorial-project")];
 
-  for (let index = projects.length - 1; index > 0; index -= 1) {
-    const randomIndex = Math.floor(Math.random() * (index + 1));
-    [projects[index], projects[randomIndex]] = [projects[randomIndex], projects[index]];
-  }
-
-  projects.forEach((project) => {
-    editorialGrid.append(project);
-  });
-
   const mediaItems = projects.map((project) => {
     const media = project.querySelector(".editorial-project__media");
     const title = project.querySelector("h2")?.textContent?.trim() || "project image";
@@ -43,4 +34,24 @@ if (editorialGrid) {
       media.closest(".editorial-project")?.querySelector("h2")?.textContent?.trim() ||
       image.alt,
   });
+
+  if ("IntersectionObserver" in window) {
+    editorialGrid.classList.add("has-reveal");
+
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-revealed");
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -8%", threshold: 0.08 },
+    );
+
+    projects.forEach((project, index) => {
+      project.style.setProperty("--reveal-delay", `${(index % 3) * 70}ms`);
+      revealObserver.observe(project);
+    });
+  }
 }
