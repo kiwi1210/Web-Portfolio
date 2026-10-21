@@ -30,11 +30,11 @@ class ProjectCard extends HTMLElement {
 
     this.innerHTML = `
       <div class="project-card__link">
-        <button class="project-card__media" type="button" aria-label="View ${title} larger">
+        <div class="project-card__media">
           <img src="${img}" alt="${title}" loading="lazy" />
-        </button>
+        </div>
         <div class="project-card__body">
-          <h3 class="project-card__title">${title}</h3>
+          <h3 class="project-card__title"><button class="project-card__title-button" type="button">${title}</button></h3>
           <p class="project-card__desc">${description}</p>
         </div>
       </div>

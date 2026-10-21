@@ -11,10 +11,9 @@
       rel="stylesheet"
     />
     <title>portfolio</title>
-    <script type="module" crossorigin src="./assets/home-B7Matd2L.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/style-BEEwdeYN.js">
-    <link rel="modulepreload" crossorigin href="./assets/image-lightbox-XonYJ35w.js">
-    <link rel="stylesheet" crossorigin href="./assets/style-ldjafkwP.css">
+    <script type="module" crossorigin src="./assets/home-CE-tPdnk.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/style-ByxFS_M5.js">
+    <link rel="stylesheet" crossorigin href="./assets/style-DLH66En4.css">
   </head>
   <body>
     <header class="site-header">
@@ -32,6 +31,7 @@
           <a href="./my-story.html">My Story</a>
           <a href="./contact.html">Contact</a>
         </nav>
+        <a class="header-cv" href="./doc/Yiru_Liang_CV.pdf" target="_blank" rel="noopener noreferrer" aria-label="View CV (PDF, opens in a new tab)">View CV <span aria-hidden="true">↗</span></a>
       </div>
     </header>
 
@@ -44,6 +44,14 @@
         </div>
         <div class="hero__scene" id="hero-scene">
           <!-- three.js canvas mounts here -->
+          <details class="hero-credits">
+            <summary>3D credits</summary>
+            <div class="hero-credits__panel">
+              <p class="hero-credits__title">3D model credits</p>
+              <p><a href="https://poly.pizza/m/5ttSZIlA0t6" target="_blank" rel="noopener noreferrer">Dog</a> by Poly by Google<br /><a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a> · via Poly Pizza</p>
+              <p><a href="https://poly.pizza/m/h9bDmhbCba" target="_blank" rel="noopener noreferrer">Potato Character</a> by Polygonal Mind<br />CC0 · via Poly Pizza</p>
+            </div>
+          </details>
         </div>
       </section>
 
@@ -53,6 +61,7 @@
           <project-card
             variant="full"
             img="./img/3Dviz.jpg"
+            project-content="urban-thermal-stress"
             title="3D Prototype for Visualizing Urban Thermal Stress"
           >
             An interactive visualization tool built in Unity that maps urban thermal stress
@@ -63,6 +72,7 @@
             variant="third"
             image-y="37%"
             img="./img/Japanese_Tales.jpg"
+            project-content="japanese-tales"
             title="Where Stories Take Root - the Landscapes Behind Japanese Tales"
           >
           </project-card>
@@ -70,12 +80,14 @@
             variant="third"
             image-y="75%"
             img="./img/2maps.jpg"
+            project-content="different-target-groups"
             title="Similar Topics, Different Target Groups"
           >
           </project-card>
           <project-card
             variant="third"
             img="./img/SA.jpg"
+            project-content="south-america"
             title="Military Dictatorship in South America"
           >
           </project-card>

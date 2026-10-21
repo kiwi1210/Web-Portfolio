@@ -1,0 +1,1 @@
+import"./style-ByxFS_M5.js";var e=document.getElementById(`nav-toggle`),t=document.getElementById(`main-nav`);e?.addEventListener(`click`,()=>{let n=t.classList.toggle(`is-open`);e.setAttribute(`aria-expanded`,String(n))}),t?.addEventListener(`click`,n=>{n.target.tagName===`A`&&(t.classList.remove(`is-open`),e.setAttribute(`aria-expanded`,`false`))});

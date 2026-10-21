@@ -1,0 +1,129 @@
+<!-- Project content: edit freely and add paragraphs, headings, figures, or resource links.
+     Asset paths are relative to the home page: ./img/... or ./doc/...
+     Keep the gallery-title ID and the two layout columns. -->
+<aside class="featured-gallery__info" aria-label="Project information">
+  <p class="featured-gallery__eyebrow">Project details</p>
+  <dl>
+    <dt>Year</dt><dd>2026</dd>
+    <dt>Tools</dt><dd>Unity, C#, Figma, Blender, Usability Testing</dd>
+    <dt>Categories</dt><dd>3D Visualization / Urban Climate</dd>
+  </dl>
+  <div class="featured-gallery__links">
+    <h3>Explore</h3>
+    <!-- Add webpage or PDF links here, using the same attributes as below. -->
+    <a href="./img/3Dviz.jpg" target="_blank" rel="noopener noreferrer" aria-label="View original image (opens in a new tab)">View original image ↗</a>
+    <a href="./doc/Yiru_thesis_poster.pdf" target="_blank" rel="noopener noreferrer" aria-label="View original image (opens in a new tab)">View poster ↗</a>
+    <a href="./doc/Yiru_thesis_presentation.pdf" target="_blank" rel="noopener noreferrer" aria-label="View original image (opens in a new tab)">View presentation slides ↗</a>
+  </div>
+</aside>
+<article class="featured-gallery__content">
+  <header>
+    <p class="featured-gallery__eyebrow">Selected work / 01</p>
+    <h2 id="gallery-title">3D Prototype for Visualizing Urban Thermal Stress</h2>
+  </header>
+  <section class="featured-gallery__context" aria-label="Project context">
+    <p>An interactive visualization prototype that maps urban thermal stress 
+    across a residential neighborhood in Seestadt, Vienna. The main goal of this project 
+    is to design and evaluate a prototype that eases the exploration and 
+    interpretation of thermal stress distributions for the general public.</p>
+    <p>The prototype was developed using Unity, with the C# visual analytics pipeline. 
+    It provides an interactive 3D environment in which users can explore Universal Thermal Climate Index 
+    (UTCI) data through navigation, interface controls, and visual encodings.</p>
+  </section>
+  <div class="featured-gallery__works">
+    <h4>Visual Encodings</h4>
+    <ul>
+      <li>Point clouds: Discrete 3D spheres positioned at exact simulation coordinates.</li>
+      <li>Horizontal planes: Continuous surfaces stacked from 0 to 10 meters at 2-meter vertical intervals.</li>
+    </ul>
+    <div class="featured-gallery__row">
+      <div class="featured-gallery__column">
+        <figure>
+          <img src="./img/3Dviz_pointclouds.jpg" alt="Point Clouds" style="width:100%">
+          <figcaption>3D Visual Encodings - Point Clouds</figcaption>
+        </figure>
+      </div>
+      <div class="featured-gallery__column">
+        <figure>
+          <img src="./img/3Dviz_isopleth.jpg" alt="Horizontal planes" style="width:100%">
+          <figcaption>3D Visual Encodings - Horizontal Planes</figcaption>
+        </figure>
+      </div>   
+    </div>
+
+
+    <h4>Interface Controls</h4>
+    <p>An hourly time slider (1–24h), scenario toggles for Tree Condition and Warm/Cold Condition, 
+    and two independent opacity sliders to adjust the opacity of the UTCI visualization and the 
+    3D building models separately.</p>
+    <div class="featured-gallery__row">
+      <div class="featured-gallery__column">
+        <figure>
+          <img src="./img/3Dviz_warm.jpg" alt="Warm Day" style="width:100%">
+          <figcaption>Scenarios Toggles - Warm Day</figcaption>
+        </figure>
+      </div>
+      <div class="featured-gallery__column">
+        <figure>
+          <img src="./img/3Dviz_cold.jpg" alt="Cold Day" style="width:100%">
+          <figcaption>Scenarios Toggles - Cold Day</figcaption>
+        </figure>
+      </div>   
+    </div>
+
+    <div class="featured-gallery__row">
+      <div class="featured-gallery__column">
+        <figure>
+          <img src="./img/3Dviz_withTree.jpg" alt="with Trees" style="width:100%">
+          <figcaption>Scenarios Toggles - with Trees</figcaption>
+        </figure>
+      </div>
+      <div class="featured-gallery__column">
+        <figure>
+          <img src="./img/3Dviz_withoutTree.jpg" alt="without Trees" style="width:100%">
+          <figcaption>Scenarios Toggles - without Trees</figcaption>
+        </figure>
+      </div>   
+    </div>
+
+    <div class="featured-gallery__row">
+      <div class="featured-gallery__column">
+        <figure>
+          <img src="./img/3Dviz_opacity1.jpg" alt="Before adjusting transparency" style="width:100%">
+          <figcaption>Opacity Sliders - Before adjusting transparency</figcaption>
+        </figure>
+      </div>
+      <div class="featured-gallery__column">
+        <figure>
+          <img src="./img/3Dviz_opacity2.jpg" alt=" After adjusting both visulaization and building transparency" style="width:100%">
+          <figcaption>Opacity Sliders -  After adjusting both visulaization and building transparency</figcaption>
+        </figure>
+      </div>   
+    </div>
+
+    <h4>Activity Mode</h4>
+    <p>Translates thermal stress data into relatable everyday activities. When an Activity Mode 
+    is enabled, the visual output dynamically filters the active dataset to show only relevant areas:</p>
+    <ul>
+      <li>Walk the Dog: Isolates ground-level thermal safety areas for dogs.</li>
+      <li>Sunbathing / Winter Walk: Isolates comfortable areas for solar exposure.</li>
+    </ul>
+    <div class="featured-gallery__row">
+      <div class="featured-gallery__column">
+        <figure>
+          <img src="./img/3Dviz_sunbath.jpg" alt="Sunbathing" style="width:100%">
+          <figcaption>Activity Mode - Sunbathing</figcaption>
+        </figure>
+      </div>
+      <div class="featured-gallery__column">
+        <figure>
+          <img src="./img/3Dviz_walkdog.jpg" alt="Walk the Dog" style="width:100%">
+          <figcaption>Activity Mode - Walk the Dog</figcaption>
+        </figure>
+      </div>   
+    </div>
+    <!-- Add more context sections and figures here in the order you want. -->
+  </div>
+
+ 
+</article>
